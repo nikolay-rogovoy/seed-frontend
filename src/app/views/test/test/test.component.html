@@ -1,0 +1,22 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-6">
+          <i class="fa fa-list"></i> Component
+        </div>
+         <div class="col-sm-6 d-flex flex-row-reverse">
+         <button type="button" class="btn btn-sm btn-primary" style="margin-left: 5px;"><i class="fa fa-plus-circle"></i>
+         Button</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <app-at-grid [data]="positions" [name]="'LayoutPmNew'" [metaData]="gridMetaData" [staticMode]="true" [currentPage]="0" [imageSize]="100"></app-at-grid>
+    </div>
+  </div>
+</div>
+<div class="hidden">
+  <template-provider-component>
+  </template-provider-component>
+</div>

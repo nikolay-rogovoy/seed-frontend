@@ -1,0 +1,16 @@
+<div class="animated fadeIn" style="max-width: 700px;margin: auto;margin-top: 10px;">
+  <div class="card">
+    <div class="card-header">
+      <i class="fa fa-align-justify"></i>Select department
+    </div>
+    <div class="card-body">
+      <app-at-grid [data]="positions" [metaData]="gridMetaData" [staticMode]="true" [currentPage]="0" [imageSize]="100"
+        (onSelect)="selectRow($event)"></app-at-grid>
+    </div>
+  </div>
+</div>
+
+<div class="hidden">
+  <template-provider-component>
+  </template-provider-component>
+</div>

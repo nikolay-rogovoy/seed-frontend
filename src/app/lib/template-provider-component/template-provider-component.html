@@ -1,0 +1,37 @@
+<p>template-provider-component</p>
+
+<ng-template #badges let-data="data">
+  <div style="display:flex;flex-direction:column;">
+    <div *ngIf="data.text">{{data.text}}</div>
+    <div>
+      <ng-container *ngFor="let badge of data.badges">
+        <span [ngClass]="badge.css">{{badge.text}}</span>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #gridButtons let-data="data">
+  <div>
+    <button type="button" class="btn btn-sm btn-primary" *ngFor="let someAction of data.buttons"
+      [ngClass]="someAction.css" style="margin-top: -10px; margin-bottom: -10px; margin-right: 5px;"
+      (click)="someAction.click(someAction.item); $event.stopPropagation();">
+      <ng-container *ngIf="someAction.icon != null">
+        <i [ngClass]="someAction.icon"></i>
+      </ng-container>
+      {{someAction.caption}}
+    </button>
+  </div>
+</ng-template>
+
+<div style="color: red">
+  <ng-container *ngTemplateOutlet="gridButtons;context:
+    {
+        data:
+        {
+            buttons: [{click: clickTest, item: 'some_item', css: {'oi-x': true, 'oi': true}}]
+        }
+    }
+">
+  </ng-container>
+</div>
