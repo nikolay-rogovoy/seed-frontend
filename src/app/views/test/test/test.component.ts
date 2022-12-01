@@ -10,6 +10,9 @@ import { LifecycleComponent } from '../../../lib/lifecycle-component';
 import { ReactiveFormDecorator } from '../../../lib/reactive-form-decorator';
 import { TemplateProviderComponent } from '../../../lib/template-provider-component/template-provider-component';
 import { IUserDep } from '../../../interfaces/i-user-dep';
+import { ServiceProvider } from '../../../services/service-provider';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   templateUrl: 'test.component.html'
 })
@@ -34,7 +37,7 @@ export class TestComponent extends LifecycleComponent implements IListComponent<
   positions: any[] = [];
 
   gridMetaData: ColumnInfo[] = [
-    new ColumnInfo('order_num', 'Order', true, new FilterInfo(''), ColumnFormat.Default, false),
+    new ColumnInfo('foo', 'Foo', true, new FilterInfo(''), ColumnFormat.Default, false),
   ];
 
   /***/
@@ -48,6 +51,15 @@ export class TestComponent extends LifecycleComponent implements IListComponent<
   }
   onInit(): void {
     this.positions = [];
+    this.injector.get(ServiceProvider).getRawData('t1')
+    .pipe(
+      switchMap((data: any) => {
+        console.log(data.result.data);
+        this.positions = data.result.data;
+        return of(data);
+      })
+    )
+    .subscribe();
   }
 
   acceptChanges(): void {
