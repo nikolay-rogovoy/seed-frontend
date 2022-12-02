@@ -37,7 +37,7 @@ export class TestComponent extends LifecycleComponent implements IListComponent<
   positions: any[] = [];
 
   gridMetaData: ColumnInfo[] = [
-    new ColumnInfo('foo', 'Foo', true, new FilterInfo(''), ColumnFormat.Default, false),
+    new ColumnInfo('fileName', 'Имена файлов', true, new FilterInfo(''), ColumnFormat.Default, false),
   ];
 
   /***/
@@ -51,7 +51,7 @@ export class TestComponent extends LifecycleComponent implements IListComponent<
   }
   onInit(): void {
     this.positions = [];
-    this.injector.get(ServiceProvider).getRawData('t1')
+    this.injector.get(ServiceProvider).getRawData('get_files')
     .pipe(
       switchMap((data: any) => {
         console.log(data.result.data);
